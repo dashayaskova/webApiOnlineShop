@@ -7,12 +7,12 @@ namespace DbProvides
 {
 	public static class EntityWrapper
 	{
-		public static Task<List<Product>> GetAllProducts(ShopContext context)
+		public static Task<List<Product>> GetAllProducts(IShopContext context)
 		{
 			return context.Products.ToListAsync();
 		}
 
-		public static Task<Product> GetProduct(ShopContext context, long id)
+		public static Task<Product> GetProduct(IShopContext context, long id)
 		{
 			return context.Products.SingleOrDefaultAsync(o => o.Id == id);
 		}

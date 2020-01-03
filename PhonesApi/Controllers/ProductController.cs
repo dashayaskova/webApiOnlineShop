@@ -8,6 +8,17 @@ namespace PhonesApi.Controllers
 {
     public class ProductController : ApiController
 	{
+		private IShopContext _db = new ShopContext();
+
+		#region Constructors
+		public ProductController() { }
+
+		public ProductController(IShopContext context)
+		{
+			_db = context;
+		}
+		#endregion
+
 		/// <summary>
 		/// Gets all the products
 		/// </summary>
@@ -16,12 +27,7 @@ namespace PhonesApi.Controllers
 		[Route("api/product/list")]
 		public async Task<IHttpActionResult> GetAllProducts()
 		{
-			List<Product> list = null;
-
-			using (var _context = new ShopContext())
-			{
-				list = await EntityWrapper.GetAllProducts(_context);
-			}
+			var list = await EntityWrapper.GetAllProducts(_db);
 
 			if (list == null)
 			{
@@ -40,12 +46,7 @@ namespace PhonesApi.Controllers
 		[Route("api/product/{id}")]
 		public async Task<IHttpActionResult> GetProduct(long id)
 		{
-			Product product = null;
-
-			using (var _context = new ShopContext())
-			{
-				product = await EntityWrapper.GetProduct(_context, id);
-			}
+			var product = await EntityWrapper.GetProduct(_db, id);
 
 			if (product == null)
 			{
@@ -87,11 +88,16 @@ namespace PhonesApi.Controllers
 		/// </summary>
 		/// <param name="product"></param>
 		/// <returns></returns>
-		/*[HttpGet]
+		[HttpGet]
 		[Route("api/product/")]
-		public Product GetProduct(long id, string name, string descr)
+		public async Task<IHttpActionResult> GetProduct(long id, string name, string descr)
 		{
-			var foundProd = EntityWrapper.GetProduct(id, name, descr);
+			Product foundProd;
+
+			using (var _context = new ShopContext())
+			{
+				foundProd = await EntityWrapper.GetProduct(_context, new Product(id, name, descr));
+			}
 
 			if (foundProd == null)
 			{
@@ -99,6 +105,6 @@ namespace PhonesApi.Controllers
 			}
 
 			return Ok(foundProd);
-		}*/
+		}
 	}
 }

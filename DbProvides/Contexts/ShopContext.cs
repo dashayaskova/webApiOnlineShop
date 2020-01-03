@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace DbProvides
 {
-	public class ShopContext : DbContext
+	public class ShopContext : DbContext, IShopContext
 	{
 		public ShopContext() :  base("ApplicationDbContext")
 		{
@@ -20,6 +20,11 @@ namespace DbProvides
 		public DbSet<Order> Orders { get; set; }
 		
 		public DbSet<User> Users { get; set; }
+
+		public void MarkAsModified(Product item)
+		{
+			Entry(item).State = EntityState.Modified;
+		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

@@ -104,6 +104,7 @@
     <Compile Include="Configurations\ProductInstanceConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="EntityWrapper.cs" />
+    <Compile Include="Contexts\IShopContext.cs" />
     <Compile Include="Migrations\201912211904452_First.cs" />
     <Compile Include="Migrations\201912211904452_First.designer.cs">
       <DependentUpon>201912211904452_First.cs</DependentUpon>
@@ -122,7 +123,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShopContext.cs" />
+    <Compile Include="Contexts\ShopContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
