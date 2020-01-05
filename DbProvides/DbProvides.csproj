@@ -103,7 +103,6 @@
     <Compile Include="Configurations\ProductConfiguration.cs" />
     <Compile Include="Configurations\ProductInstanceConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
-    <Compile Include="EntityWrapper.cs" />
     <Compile Include="Contexts\IShopContext.cs" />
     <Compile Include="Migrations\201912211904452_First.cs" />
     <Compile Include="Migrations\201912211904452_First.designer.cs">

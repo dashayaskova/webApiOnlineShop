@@ -7,7 +7,7 @@ namespace DbProvides
 {
 	public class ShopContext : DbContext, IShopContext
 	{
-		public ShopContext() :  base("ApplicationDbContext")
+		public ShopContext() : base("ApplicationDbContext")
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopContext, Configuration>());
 			Configuration.ProxyCreationEnabled = false;

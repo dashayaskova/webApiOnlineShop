@@ -1,6 +1,6 @@
 ﻿using DbModels.Models;
-using DbProvides;
-using System.Collections.Generic;
+using PhonesApi.Services;
+using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -8,16 +8,12 @@ namespace PhonesApi.Controllers
 {
     public class ProductController : ApiController
 	{
-		private IShopContext _db = new ShopContext();
+		private readonly IProductService _productService;
 
-		#region Constructors
-		public ProductController() { }
-
-		public ProductController(IShopContext context)
+		public ProductController(IProductService productService) // Injection of IProductService
 		{
-			_db = context;
+			_productService = productService ?? throw new ArgumentNullException(nameof(productService)); 
 		}
-		#endregion
 
 		/// <summary>
 		/// Gets all the products
@@ -27,14 +23,14 @@ namespace PhonesApi.Controllers
 		[Route("api/product/list")]
 		public async Task<IHttpActionResult> GetAllProducts()
 		{
-			var list = await EntityWrapper.GetAllProducts(_db);
+			var product = await _productService.GetAllProducts();
 
-			if (list == null)
+			if (product == null)
 			{
 				return NotFound();
 			}
 
-			return Ok(list);
+			return Ok(product);
 		}
 
 		/// <summary>
@@ -46,7 +42,7 @@ namespace PhonesApi.Controllers
 		[Route("api/product/{id}")]
 		public async Task<IHttpActionResult> GetProduct(long id)
 		{
-			var product = await EntityWrapper.GetProduct(_db, id);
+			var product = await _productService.GetProduct(id);
 
 			if (product == null)
 			{
@@ -69,10 +65,7 @@ namespace PhonesApi.Controllers
 			{
 				Product foundProd = null;
 
-				using (var _context = new ShopContext())
-				{
-					foundProd = await EntityWrapper.GetProduct(_context, product);
-				}
+				foundProd = await _productService.GetProduct(product);
 
 				if (foundProd != null)
 				{
@@ -94,10 +87,7 @@ namespace PhonesApi.Controllers
 		{
 			Product foundProd;
 
-			using (var _context = new ShopContext())
-			{
-				foundProd = await EntityWrapper.GetProduct(_context, new Product(id, name, descr));
-			}
+			foundProd = await _productService.GetProduct(new Product(id, name, descr));
 
 			if (foundProd == null)
 			{
