@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DbModels.Models
 {
-	[DataContract]
+	[DataContract(IsReference = true)]
 	public class Order
 	{
 		[DataMember]
@@ -28,10 +28,12 @@ namespace DbModels.Models
 			_id = id;
 			_user = user;
 			_userId = user.Username;
+			ProductInstances = new List<ProductInstance>();
 		}
 
 		public Order()
 		{
+			ProductInstances = new List<ProductInstance>();
 		}
 	}
 }

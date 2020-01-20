@@ -21,6 +21,8 @@ namespace DbProvides
 		
 		public DbSet<User> Users { get; set; }
 
+		public DbSet<Category> Categories { get; set; }
+
 		public void MarkAsModified(Product item)
 		{
 			Entry(item).State = EntityState.Modified;
@@ -32,6 +34,8 @@ namespace DbProvides
 			modelBuilder.Configurations.Add(new UserConfiguration());
 			modelBuilder.Configurations.Add(new OrderConfiguration());
 			modelBuilder.Configurations.Add(new ProductInstanceConfiguration());
+			modelBuilder.Configurations.Add(new ProductCategoryConfiguration());
+			modelBuilder.Configurations.Add(new CategoryConfiguration());
 		}
 	}
 }

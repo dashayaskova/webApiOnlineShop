@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DbModels.Models
 {
+	[DataContract(IsReference = true)]
 	public class User
 	{
 		[IgnoreDataMember]
@@ -33,6 +34,7 @@ namespace DbModels.Models
 		public User(string username)
 		{
 			_username = username;
+			Orders = new List<Order>();
 		}
 	}
 }

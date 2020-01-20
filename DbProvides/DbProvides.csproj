@@ -99,7 +99,9 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\CategoryConfiguration.cs" />
     <Compile Include="Configurations\OrderConfiguration.cs" />
+    <Compile Include="Configurations\ProductCategoryConfiguration.cs" />
     <Compile Include="Configurations\ProductConfiguration.cs" />
     <Compile Include="Configurations\ProductInstanceConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
@@ -119,6 +121,14 @@
     <Compile Include="Migrations\202001011707164_SomeChanges.cs" />
     <Compile Include="Migrations\202001011707164_SomeChanges.designer.cs">
       <DependentUpon>202001011707164_SomeChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001081919215_Categories.cs" />
+    <Compile Include="Migrations\202001081919215_Categories.designer.cs">
+      <DependentUpon>202001081919215_Categories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001081956259_CategoryConfig.cs" />
+    <Compile Include="Migrations\202001081956259_CategoryConfig.designer.cs">
+      <DependentUpon>202001081956259_CategoryConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -151,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001011707164_SomeChanges.resx">
       <DependentUpon>202001011707164_SomeChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001081919215_Categories.resx">
+      <DependentUpon>202001081919215_Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001081956259_CategoryConfig.resx">
+      <DependentUpon>202001081956259_CategoryConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

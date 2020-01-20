@@ -1,6 +1,7 @@
 ﻿using DbModels.Models;
 using System;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace DbProvides
 {
@@ -10,6 +11,8 @@ namespace DbProvides
 		DbSet<ProductInstance> ProductInstances { get; }
 		DbSet<Order> Orders { get; }
 		DbSet<User> Users { get; }
+		DbSet<Category> Categories { get; }
 		void MarkAsModified(Product item);
+		Task<int> SaveChangesAsync();
 	}
 }

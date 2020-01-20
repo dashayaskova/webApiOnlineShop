@@ -1,4 +1,5 @@
 ﻿using DbModels.Models;
+using PhonesApi.Models;
 using PhonesApi.Services;
 using System;
 using System.Threading.Tasks;
@@ -8,11 +9,49 @@ namespace PhonesApi.Controllers
 {
     public class ProductController : ApiController
 	{
-		private readonly IProductService _productService;
+		private readonly IProductService _productService = new ProductService();
+
+		public ProductController() { }
 
 		public ProductController(IProductService productService) // Injection of IProductService
 		{
 			_productService = productService ?? throw new ArgumentNullException(nameof(productService)); 
+		}
+
+		/// <summary>
+		/// Add order 
+		/// </summary>
+		/// <returns></returns>
+		[HttpPost]
+		[Route("api/order/add")]
+		public async Task<IHttpActionResult> AddOrder([FromBody]InOrder ord)
+		{
+			var success = await _productService.AddOrder(ord);
+
+			if (ord == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(success);
+		}
+
+		/// <summary>
+		/// Gets all the categories
+		/// </summary>
+		/// <returns></returns>
+		[HttpGet]
+		[Route("api/category/list")]
+		public async Task<IHttpActionResult> GetAllCategories()
+		{
+			var categories = await _productService.GetAllCategories();
+
+			if (categories == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(categories);
 		}
 
 		/// <summary>
